@@ -1,0 +1,48 @@
+
+<div class="header">
+    <div class="row">
+        <div class="col-md-8">
+            <h2>Quiz Application</h2>
+        </div>
+        <div class="col-md-4 header-right">
+            <!-- In actual application, you may wish to load the quiz List using angular service. -->
+            Select Quiz: 
+            <select id="quizList" ng-model="quizName" ng-change="loadQuiz(quizName)">
+                <option value="data/aspnet.js">Asp.Net</option>
+                <option value="data/csharp.js">C Sharp</option>
+                <option value="data/designPatterns.js">Design Patterns</option>
+            </select>
+        </div>
+    </div>
+    <hr />
+</div>
+<div id="quiz">
+    <h1 class="center">{{quiz.name}}</h1>
+    <hr />
+    <div ng-show="mode=='quiz'">
+        <div ng-repeat="question in myQuestions">
+            <div class="label label-warning">Question {{currentPage}} of {{totalItems}}.</div>
+            <div class="question">
+                <p class="txt">{{currentPage}}. <span ng-bind-html="question.Name"></span></p>
+                <p class="ans" 
+                
+                ng-repeat="option in myQuestions[$index].Options">  {{option.Name}}
+
+                </p>
+            </div>
+        </div>
+        <hr />
+        <div class="quizNav">
+            <div>
+                <button class="btn btn-default" ng-show="config.allowBack" ng-click="goTo(1);">First</button>
+                <button class="btn btn-default" ng-show="config.allowBack" ng-click="goTo(currentPage - 1);">Prev</button>
+                <button class="btn btn-primary"                            ng-click="goTo(currentPage + 1);">Next</button>
+                <button class="btn btn-default" ng-show="config.allowBack" ng-click="goTo(totalItems);">Last</button>
+            </div>
+            <br />
+            <pagination ng-show="config.showPager" direction-links="false" total-items="totalItems" items-per-page="itemsPerPage" ng-model="currentPage" ng-change="pageChanged()"></pagination>
+        </div>
+    </div>
+
+
+</div>
