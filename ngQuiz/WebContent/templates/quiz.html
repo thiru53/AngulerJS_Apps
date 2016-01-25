@@ -20,29 +20,51 @@
     <h1 class="center">{{quiz.name}}</h1>
     <hr />
     <div ng-show="mode=='quiz'">
-        <div ng-repeat="question in myQuestions">
-            <div class="label label-warning">Question {{currentPage}} of {{totalItems}}.</div>
-            <div class="question">
-                <p class="txt">{{currentPage}}. <span ng-bind-html="question.Name"></span></p>
-                <p class="ans" 
-                
-                ng-repeat="option in myQuestions[$index].Options">  {{option.Name}}
+    
+		<div class="progress">
+			<div
+				class=" {{ ($index === activeQuestion) ? 'on':'off' }} {{ (myQuestion.questionState === 'answered') ? 'answered' :'unanswered' }} {{ (myQuestion.correctness === 'correct') ? 'correct' : 'incorrect'}}"
+				ng-repeat="myQuestion in questions"></div>
+		</div>
 
-                </p>
-            </div>
-        </div>
-        <hr />
-        <div class="quizNav">
-            <div>
-                <button class="btn btn-default" ng-show="config.allowBack" ng-click="goTo(1);">First</button>
-                <button class="btn btn-default" ng-show="config.allowBack" ng-click="goTo(currentPage - 1);">Prev</button>
-                <button class="btn btn-primary"                            ng-click="goTo(currentPage + 1);">Next</button>
-                <button class="btn btn-default" ng-show="config.allowBack" ng-click="goTo(totalItems);">Last</button>
-            </div>
-            <br />
-            <pagination ng-show="config.showPager" direction-links="false" total-items="totalItems" items-per-page="itemsPerPage" ng-model="currentPage" ng-change="pageChanged()"></pagination>
-        </div>
-    </div>
+		<div class="intro {{ (activeQuestion > -1) ? 'inactive' : 'active'}}">
+			<h2>Welcome</h2>
+			<p>Click to begin to test your knowledge of saturn.</p>
+			<p class="btn" ng-click="activeQuestion = 0">Begin</p>
+		</div>
+
+
+		<div class="question  {{ ($index === activeQuestion) ? 'active' : 'inactive' }} {{ (myQuestion.questionState === 'answered') ? 'answered' : 'unanswered' }}	 {{ (myQuestion.correctness === correct) ? 'correct' : 'incorrect' }} " 				
+				ng-repeat="myQuestion in questions">
+				<p class="txt"> {{currentPage}}. <span ng-bind-html="myQuestion.Name"></span></p>
+				<p class="ans" 
+					ng-class="{ image:Answer.image, 
+					selected:isSelected($parent.$index,$index), 
+					correct:isCorrect($parent.$index,$index)
+					}"
+					ng-style={'background-image':'url({{Answer.image}})'}
+					ng-click="selectAnswer($parent.$index,$index)" 
+					ng-repeat="option in questions[$index].Options">{{option.Name}}				
+				</p>
+				
+				<div class="feedback">
+					<p ng-show="myQuestion.correctness === 'correct'">You are <strong>Correct</strong></p>
+					<p ng-show="myQuestion.correctness === 'incorrect'">Oops! That is not correct</p>
+					<p>{{myQuestion.feedback}}</p>
+					<div class="btn" ng-click="selectContinue()">Continue</div>				
+				</div>							
+			</div>
+
+		<div class="results {{ (totalQuestions === activeQuestion) ? 'active' : 'inactive'}}">
+			<h3>Results</h3>
+			<p>You Scored {{percentage}}% by correctly answering {{score}} of
+				the total {{totalQuestions}} questions.</p>
+			<p>Use the links below to challenge your friends.</p>
+			<div class="share" ng-bind-html="createShareLinks(percentage)"></div>
+		</div>
+
+
+	</div>
 
 
 </div>

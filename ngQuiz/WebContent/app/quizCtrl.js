@@ -1,6 +1,11 @@
-﻿var quizCtrl = function ($scope, $http, helper) {
+﻿var quizCtrl = function ($scope, $http, helper,$sce) {
     $scope.quizName = 'data/csharp.js';
 
+	$scope.score = 0;
+	$scope.activeQuestion = -1;
+	$scope.activeQuestionAnswered = 0;
+	$scope.percentage = 0;
+	
     //Note: Only those configs are functional which is documented at: http://www.codeproject.com/Articles/860024/Quiz-Application-in-AngularJs
     // Others are work in progress.
     $scope.defaultConfig = {
@@ -19,12 +24,62 @@
     }
 
     $scope.goTo = function (index) {
-        if (index > 0 && index <= $scope.totalItems) {
+        if (index > 0 && index <= $scope.totalQuestions) {
             $scope.currentPage = index;
             $scope.mode = 'quiz';
         }
     }
 
+	$scope.selectAnswer = function(qIndex,aIndex){
+		//alert(qIndex +"'and'"+ aIndex);
+		var questionState = $scope.questions[qIndex].questionState;
+		
+		if( questionState != 'answered' ){
+			
+			$scope.questions[qIndex].selectedAnswer = aIndex;
+			var correctAnswer = $scope.questions[qIndex].correct;
+			$scope.questions[qIndex].correctAnswer = correctAnswer;
+			
+			if( aIndex === correctAnswer){
+				$scope.questions[qIndex].correctness = 'correct';
+				$scope.score += 1;
+				
+			}else{
+				$scope.questions[qIndex].correctness = 'incorrect';
+			}
+			$scope.questions[qIndex].questionState = 'answered';
+		}
+		$scope.percentage = (($scope.score/$scope.totalQuestions)*100).toFixed(2);
+		
+
+            
+	}
+	$scope.isSelected = function(qIndex,aIndex){
+		return $scope.questions[qIndex].selectedAnswer === aIndex;
+	}
+	
+	$scope.isCorrect = function(qIndex,aIndex){
+		return $scope.questions[qIndex].correctAnswer === aIndex;
+	}
+	$scope.selectContinue = function(){
+        if ($scope.config.autoMove == true && $scope.currentPage < $scope.totalQuestions)
+            $scope.currentPage++;
+		return $scope.activeQuestion += 1;
+	}
+	
+	$scope.createShareLinks = function(percentage){
+		var url = "http://codifydesign.com";
+		var text ="I scoreda a "+percentage+"% on this quiz about Saturn. Try to beat my score at "+url;
+		
+		var emailLink =   '<a class="btn email" href="mailto:?subject=Try to beat my quiz score!&amp;body='+text+'">Email a Friend</a>';
+		var twitterLink = '<a class="btn twitter" target="_blank" href="https://twitter.com/share?text=I scored a '+percentage+' percentage on this quiz ">Tweet your score</a>';
+		var facebookLink = '<a href="https://www.facebook.com/sharer/sharer.php?u=example.org" target="_blank"> Share on Facebook </a>';
+		
+		var newMarkup = emailLink + twitterLink;
+		
+		return $sce.trustAsHtml(newMarkup)
+	}
+	
     $scope.onSelect = function (question, option) {
         if (question.QuestionTypeId == 1) {
             question.Options.forEach(function (element, index, array) {
@@ -35,7 +90,7 @@
             });
         }
 
-        if ($scope.config.autoMove == true && $scope.currentPage < $scope.totalItems)
+        if ($scope.config.autoMove == true && $scope.currentPage < $scope.totalQuestions)
             $scope.currentPage++;
     }
 
@@ -63,7 +118,7 @@
              $scope.quiz = res.data.quiz;
              $scope.config = helper.extend({}, $scope.defaultConfig, res.data.config);
              $scope.questions = $scope.config.shuffleQuestions ? helper.shuffle(res.data.questions) : res.data.questions;
-             $scope.totalItems = $scope.questions.length;
+             $scope.totalQuestions = $scope.questions.length;
              $scope.itemsPerPage = $scope.config.pageSize;
              $scope.currentPage = 1;
              $scope.mode = 'quiz';
@@ -88,7 +143,7 @@
         });
         return answered;
     };
-
+    /**
     $scope.isCorrect = function (question) {
         var result = 'correct';
         question.Options.forEach(function (option, index, array) {
@@ -98,8 +153,8 @@
             }
         });
         return result;
-    };
+    };*/
 }
 
-quizCtrl.$inject = ['$scope', '$http', 'helperService'];
+quizCtrl.$inject = ['$scope', '$http', 'helperService','$sce'];
 app.controller('quizCtrl', quizCtrl);

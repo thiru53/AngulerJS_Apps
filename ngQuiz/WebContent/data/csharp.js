@@ -19,7 +19,8 @@
             { "Id": 1056, "QuestionId": 1010, "Name": "Friend Assemblies", "IsAnswer": false },
             { "Id": 1057, "QuestionId": 1010, "Name": "Public Assemblies", "IsAnswer": false },
             { "Id": 1058, "QuestionId": 1010, "Name": "Shared Assemblies", "IsAnswer": true }],
-        "QuestionType": { "Id": 1, "Name": "Multiple Choice", "IsActive": true }
+        "QuestionType": { "Id": 1, "Name": "Multiple Choice", "IsActive": true },
+        "correct"  : 0
     },
     {
         "Id": 1011,
@@ -31,7 +32,8 @@
             { "Id": 1057, "QuestionId": 1010, "Name": "Garbage Collector", "IsAnswer": true },
             { "Id": 1058, "QuestionId": 1010, "Name": "Class Loader", "IsAnswer": false },
             { "Id": 1058, "QuestionId": 1010, "Name": "CTS", "IsAnswer": false }],
-        "QuestionType": { "Id": 1, "Name": "Multiple Choice", "IsActive": true }
+        "QuestionType": { "Id": 1, "Name": "Multiple Choice", "IsActive": true },
+        "correct"  : 1
     },
     {
         "Id": 1012,
@@ -42,7 +44,8 @@
             { "Id": 1057, "QuestionId": 1010, "Name": "ngen", "IsAnswer": true },
             { "Id": 1056, "QuestionId": 1010, "Name": "dumpbin", "IsAnswer": false },
             { "Id": 1058, "QuestionId": 1010, "Name": "ildasm", "IsAnswer": false }],
-        "QuestionType": { "Id": 1, "Name": "Multiple Choice", "IsActive": true }
+        "QuestionType": { "Id": 1, "Name": "Multiple Choice", "IsActive": true },
+        "correct"  : 2
     },
     {
         "Id": 1013,
@@ -53,7 +56,8 @@
             { "Id": 1057, "QuestionId": 1010, "Name": "+ (Plus)", "IsAnswer": false },
             { "Id": 1056, "QuestionId": 1010, "Name": "/ (Divide)", "IsAnswer": false },
             { "Id": 1058, "QuestionId": 1010, "Name": "% (Modulo)", "IsAnswer": false }],
-        "QuestionType": { "Id": 1, "Name": "Multiple Choice", "IsActive": true }
+        "QuestionType": { "Id": 1, "Name": "Multiple Choice", "IsActive": true },
+        "correct"  : 3
     },
     {
         "Id": 1014,
@@ -64,7 +68,8 @@
             { "Id": 1057, "QuestionId": 1010, "Name": "A class cannot implement an interface partially.", "IsAnswer": false },
             { "Id": 1056, "QuestionId": 1010, "Name": "An interface can contain static methods.", "IsAnswer": false },
             { "Id": 1058, "QuestionId": 1010, "Name": "An interface can contain static data.", "IsAnswer": false }],
-        "QuestionType": { "Id": 1, "Name": "Multiple Choice", "IsActive": true }
+        "QuestionType": { "Id": 1, "Name": "Multiple Choice", "IsActive": true },
+        "correct"  : 0
     },
     {
         "Id": 1015,
@@ -75,7 +80,8 @@
             { "Id": 1057, "QuestionId": 1010, "Name": "We cannot modify characters contained in the string", "IsAnswer": true },
             { "Id": 1056, "QuestionId": 1010, "Name": "We cannot perform various operation of comparison, inserting, appending etc", "IsAnswer": false },
             { "Id": 1058, "QuestionId": 1010, "Name": "None of the above", "IsAnswer": false }],
-        "QuestionType": { "Id": 1, "Name": "Multiple Choice", "IsActive": true }
+        "QuestionType": { "Id": 1, "Name": "Multiple Choice", "IsActive": true },
+        "correct"  : 1
     },
     {
         "Id": 1016,
@@ -86,7 +92,8 @@
             { "Id": 1056, "QuestionId": 1010, "Name": "StackMemoryException", "IsAnswer": true },
             { "Id": 1057, "QuestionId": 1010, "Name": "DivideByZeroException", "IsAnswer": false },
             { "Id": 1058, "QuestionId": 1010, "Name": "InvalidOperationException", "IsAnswer": false }],
-        "QuestionType": { "Id": 1, "Name": "Multiple Choice", "IsActive": true }
+        "QuestionType": { "Id": 1, "Name": "Multiple Choice", "IsActive": true },
+        "correct"  : 2
     },
     {
         "Id": 1017,
@@ -97,7 +104,8 @@
             { "Id": 1056, "QuestionId": 1010, "Name": "CLR", "IsAnswer": true },
             { "Id": 1057, "QuestionId": 1010, "Name": "Linker", "IsAnswer": false },
             { "Id": 1058, "QuestionId": 1010, "Name": "Operating system", "IsAnswer": false }],
-        "QuestionType": { "Id": 1, "Name": "Multiple Choice", "IsActive": true }
+        "QuestionType": { "Id": 1, "Name": "Multiple Choice", "IsActive": true },
+        "correct"  : 3
     },
     {
         "Id": 1018,
@@ -108,7 +116,8 @@
             { "Id": 1057, "QuestionId": 1010, "Name": "Delegates cannot be used to call procedures that receive variable number of arguments.", "IsAnswer": true },
             { "Id": 1056, "QuestionId": 1010, "Name": "If signatures of two methods are same they can be called through the same delegate object.", "IsAnswer": false },
             { "Id": 1058, "QuestionId": 1010, "Name": "Delegates cannot be used to call an instance function. Delegates cannot be used to call an instance subroutine.", "IsAnswer": false }],
-        "QuestionType": { "Id": 1, "Name": "Multiple Choice", "IsActive": true }
+        "QuestionType": { "Id": 1, "Name": "Multiple Choice", "IsActive": true },
+        "correct"  : 0
     },
     {
         "Id": 1019,
@@ -119,6 +128,7 @@
             { "Id": 1056, "QuestionId": 1010, "Name": "Byte", "IsAnswer": false },
             { "Id": 1057, "QuestionId": 1010, "Name": "Short", "IsAnswer": false },
             { "Id": 1058, "QuestionId": 1010, "Name": "Long", "IsAnswer": false }],
-        "QuestionType": { "Id": 1, "Name": "Multiple Choice", "IsActive": true }
+        "QuestionType": { "Id": 1, "Name": "Multiple Choice", "IsActive": true },
+        "correct"  : 1
     }]
 }
