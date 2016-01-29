@@ -73,9 +73,9 @@
 		
 		var emailLink =   '<a class="btn email" href="mailto:?subject=Try to beat my quiz score!&amp;body='+text+'">Email a Friend</a>';
 		var twitterLink = '<a class="btn twitter" target="_blank" href="https://twitter.com/share?text=I scored a '+percentage+' percentage on this quiz ">Tweet your score</a>';
-		var facebookLink = '<a href="https://www.facebook.com/sharer/sharer.php?u=example.org" target="_blank"> Share on Facebook </a>';
+		var facebookLink = '<a class="btn facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=example.org" > Share on Facebook </a>';
 		
-		var newMarkup = emailLink + twitterLink;
+		var newMarkup = emailLink + twitterLink+facebookLink;
 		
 		return $sce.trustAsHtml(newMarkup)
 	}
